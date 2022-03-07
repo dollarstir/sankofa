@@ -2,10 +2,7 @@
 
 function so()
 {
-    
-
-    
-            echo '<footer class="py-5">
+    echo '<footer class="py-5">
             <div class="container py-md-3">
                 <div class="row footer-grids">
                     <div class="col-lg-4 footer-grid-left mb-lg-0 mb-4">
@@ -36,14 +33,15 @@ function so()
                     </div>
                 </div>
                 <div class="copyright mt-5">
-                    <p class="text-center">© '.date("Y").' Sankofa Photography. All Rights Reserved | Design by <a href="http://purplesofts.com/"> Purple Software </a></p>
+                    <p class="text-center">© '.date('Y').' Sankofa Photography. All Rights Reserved | Design by <a href="http://purplesofts.com/"> Purple Software </a></p>
                 </div>
             </div>
-        </footer>'; 
+        </footer>';
 }
 
-function head(){
-            echo '<header>
+function head()
+{
+    echo '<header>
             <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
 
                 <h1>
@@ -82,15 +80,13 @@ function head(){
         </header>';
 }
 
-
-function  sendmessage($name,$email,$phone,$message){
-
+function sendmessage($name, $email, $phone, $message)
+{
     include 'db.php';
 
-    $send = mysqli_query($conn,"INSERT INTO message (name,email,phone,message) VALUES ('$name','$email','$phone','$message') ");
+    $send = mysqli_query($conn, "INSERT INTO message (name,email,phone,message) VALUES ('$name','$email','$phone','$message') ");
 
     if ($send) {
-      
         echo '<div class="mess" style="background-color:green;border-radius:10px;">
         <center><p style="color:#f1f1f1;">Message sent succesfully</p></center>
      </div>
@@ -105,13 +101,9 @@ function  sendmessage($name,$email,$phone,$message){
      </script>
      
      ';
-    }
-    else {
+    } else {
         echo '<div class="mess" style="background-color:red;border-radius:10px;">
         <center><p style="color:#f1f1f1;">Something wrong please try again</p></center>
      </div>';
     }
 }
-
-
-?>
