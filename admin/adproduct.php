@@ -1728,11 +1728,11 @@ if (!isset($_SESSION['id']))
                                       <select name="type" class="form-control-rounded form-control" id="exampleFormControlSelect1">
                                           <option value="">Select category</option>
                                          
-                                          <option value="">Wedding</option>
-                                          <option value="">Frame Pictures</option>
-                                          <option value="">Film Making</option>
-                                          <option value="">nature</option>
-                                          <option value="">Event</option>
+                                          <option value="wedding">Wedding</option>
+                                          <option value="frame">Frame Pictures</option>
+                                          <option value="film">Film Making</option>
+                                          <option value="nature">nature</option>
+                                          <option value="event">Event</option>
                                           
                                           
                                           

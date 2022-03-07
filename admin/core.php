@@ -40,15 +40,13 @@ function login($username,$password)
 function adprodu($name,$type){
 
     include "db.php";
+    $fileinfo=PATHINFO($_FILES["image"]["name"]);
+    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+    move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $newFilename);
+    $pic="upload/" . $newFilename;  
 
-    $ccourse= mysqli_query($conn,"SELECT * FROM drugs WHERE bname= '$bname' AND gname='$gname' ");
-    $rcourse= mysqli_fetch_array($ccourse);
-        if ($rcourse >=1) {
-            echo' <div id="mess" style="background-color:red;"><p>Sorry product already Exist</p></div>';
-                        
-            # code...
-        } else {
-           $adco= mysqli_query($conn,"INSERT INTO drugs (bname,gname,spname,category,costprice,price,remaining,quantity,date_added,date_updated,expire) VALUES ('$bname','$gname','$spname','$category','$costprice','$price','$remaining','$quantity','$date_added','$date_updated','$expire')  ");
+     
+           $adco= mysqli_query($conn,"INSERT INTO gallery (name,type,pic) VALUES ('$name','$type','$pic')  ");
             
                 if ($adco) {
                     echo' <div id="mess"><p>Product added successfully</p></div>';
@@ -57,7 +55,7 @@ function adprodu($name,$type){
                     echo' <div id="mess" style="background-color:red;"><p>Failed to add product/p></div>';
                 }
                 
-        }
+        
         
 
 
@@ -335,19 +333,22 @@ function viewpurchasess(){
 
 function viewallcategories(){
     include 'db.php';
-    $vp =mysqli_query($conn,"SELECT * FROM category");
+    $vp =mysqli_query($conn,"SELECT * FROM gallery");
 
     while ($vip= mysqli_fetch_array($vp)) {
 
         $id= $vip['id'];
         $name= $vip['name'];
-        $shortname = $vip['shortname'];
+        $type= $vip['type'];
+
+        $pic = $vip['pic'];
         
 
         echo '<tr>
         <td>'.$id.'</td>
         <td>'.$name.'</td>
-        <td>'.$shortname.'</td>
+        <td>'.$type.'</td>
+        <td><img src="'.$pic.'" style="width:100px;height:100px;"></td>
        
         <td><a href="editcategory.php?pid='.$id.'"><span class="flaticon-edit-7"></span> </a>| <a href="deletecategory.php?pid='.$id.'" <span class="flaticon-delete"></span></td>
 
@@ -527,9 +528,7 @@ function updtatecurrency($id,$name,$symbol){
 function so(){
 
     include 'db.php';
-    $gefo= mysqli_query($conn,"SELECT * FROM title WHERE id = '1' ");
-    $getf= mysqli_fetch_array($gefo);
-    $app = $getf['app_name'];
+    
 
     echo'
     <footer class="footer-section theme-footer">
@@ -544,7 +543,7 @@ function so(){
                 <div class="col-xl-5 col-md-6 col-sm-6 col-12">
                     <ul class="list-inline mb-0 d-flex justify-content-sm-end justify-content-center mr-sm-3 ml-sm-0 mx-3">
                         <li class="list-inline-item  mr-3">
-                            <p class="bottom-footer">© '.date("Y"). ' POS <a target="_blank" href="http://www.purplesofts.com">Designed by Purple Software</a></p>
+                            <p class="bottom-footer">© '.date("Y"). ' Sankofa photography <a target="_blank" href="http://www.purplesofts.com">Designed by Purple Software</a></p>
                         </li>
                         <li class="list-inline-item align-self-center">
                             <div class="scrollTop"><i class="flaticon-up-arrow-fill-1"></i></div>

@@ -25,7 +25,7 @@ if (isset($_GET['dollar'])) {
         }
         
         else {
-           echo adprodu($bname,$gname,$spname,$category,$costprice,$price,$remaining,$quantity,$date_added,$date_updated,$expire); 
+           echo adprodu($name,$type); 
         }
 
         # code...

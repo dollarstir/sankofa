@@ -1,7 +1,7 @@
 <?php
 include "db.php";
 $id= $_GET['pid'];
-$dl=mysqli_query($conn,"DELETE FROM  category  WHERE id='$id' ");
+$dl=mysqli_query($conn,"DELETE FROM  gallery  WHERE id='$id' ");
 
 if ($dl) 
 {
